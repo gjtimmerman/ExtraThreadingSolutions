@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33829.357
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaximumZoekenTasks", "MaximumZoekenTasks\MaximumZoekenTasks.csproj", "{60AB5A90-D1E7-49F1-8E2B-C86FB7341668}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{60AB5A90-D1E7-49F1-8E2B-C86FB7341668}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60AB5A90-D1E7-49F1-8E2B-C86FB7341668}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60AB5A90-D1E7-49F1-8E2B-C86FB7341668}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60AB5A90-D1E7-49F1-8E2B-C86FB7341668}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DB367E73-F5CA-44FF-B61F-A535B6327502}
+	EndGlobalSection
+EndGlobal
