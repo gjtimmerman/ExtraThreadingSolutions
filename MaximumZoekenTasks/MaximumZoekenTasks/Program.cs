@@ -11,27 +11,24 @@ namespace MaximumZoekenTasks
         }
         public int lower;
         public int higher;
-        public int maxIndex;
 
     }
     internal class Program
     {
         private static List<int> list;
-        public static void FindMaxInterval(object ?Work)
+        public static int FindMaxInterval(object ?Work)
         {
             if (Work == null)
-                return;
+                return -1;
             WorkToDo workToDo = (WorkToDo)Work;
             int maxIndex;
             if (workToDo.lower > workToDo.higher)
             {
-                workToDo.maxIndex = -1;
-                return;
+                return -1;
             }
             else if (workToDo.lower == workToDo.higher)
             {
-                workToDo.maxIndex = workToDo.lower;
-                return;
+                return workToDo.lower;
             }
             else
                 maxIndex = workToDo.lower;
@@ -40,7 +37,7 @@ namespace MaximumZoekenTasks
                 if (list[i] > list[maxIndex])
                     maxIndex = i;
             }
-            workToDo.maxIndex = maxIndex;
+            return maxIndex;
         }
         public static int FindMaximum(List<int> list)
         {
@@ -49,28 +46,25 @@ namespace MaximumZoekenTasks
             {
                 int TaskCount = list.Count / 5;
                 WorkToDo [] workToDoList = new WorkToDo[TaskCount];
-                Task[] tList = new Task[TaskCount]; 
+                Task<int>[] tList = new Task<int>[TaskCount]; 
                 for (int i = 0; i < TaskCount; i++)
                 {
                     workToDoList[i] = new WorkToDo(list.Count * i / TaskCount, list.Count * (i+1)/TaskCount);
-                    tList[i] = new Task(FindMaxInterval, workToDoList[i]);
+                    tList[i] = new Task<int>(FindMaxInterval, workToDoList[i]);
                     tList[i].Start();
 
                 }
                 Task.WaitAll(tList);
-                int maxIndex = workToDoList[0].maxIndex;
-                if (maxIndex == -1)
-                    return maxIndex; 
+                int maxIndex = tList[0].Result;
                 for (int i = 1; i < TaskCount; i++)
-                    if (list[workToDoList[i].maxIndex] > list[maxIndex])
-                        maxIndex = workToDoList[i].maxIndex;
+                    if (list[tList[i].Result] > list[maxIndex])
+                        maxIndex = tList[i].Result;
                 return maxIndex;
             }
             else
             {
                 WorkToDo workToDo = new WorkToDo(0, list.Count);
-                FindMaxInterval(workToDo);
-                return workToDo.maxIndex;
+                return FindMaxInterval(workToDo);
 
             }    
         }
@@ -78,10 +72,10 @@ namespace MaximumZoekenTasks
         static void Main(string[] args)
         {
             List<int> list = new List<int>();
- //           list.Add(1000);
+//            list.Add(1000);
             list.AddRange(Enumerable.Range(0, 100).ToList());
             list.AddRange(Enumerable.Range(0, 99).ToList());
-            list.AddRange(Enumerable.Range(-100, 0));
+            list.AddRange(Enumerable.Range(-100, 150));
             int maxIndex = FindMaximum(list);
 
             Console.WriteLine($"1: {maxIndex}");
